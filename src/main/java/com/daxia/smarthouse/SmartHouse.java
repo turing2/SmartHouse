@@ -20,6 +20,6 @@ public class SmartHouse {
     }
 
 	private static void securityCheck(String[] args) {
-		
+	    
     }
 }
