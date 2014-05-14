@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.daxia.smarthouse.event.EventBus;
+import com.daxia.smarthouse.event.listener.TVEventListener;
 import com.daxia.smarthouse.plugin.IPlugin;
 import com.daxia.smarthouse.plugin.PluginLoader;
 
@@ -12,6 +14,7 @@ public class SmartHouse {
 	
 	public static void main(String[] args) {
 		securityCheck(args);
+		registerEventListeners();
 		
 		List<IPlugin> plugins = PluginLoader.getInstance().scanAndLoad();
 		if (logger.isDebugEnabled()) {
@@ -25,7 +28,11 @@ public class SmartHouse {
         }
     }
 
-	private static void securityCheck(String[] args) {
+	private static void registerEventListeners() {
+	    EventBus.getInstance().registerListener(new TVEventListener());
+    }
+
+    private static void securityCheck(String[] args) {
 	    
     }
 }
